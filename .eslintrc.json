@@ -25,6 +25,7 @@
     "rules": {
         "linebreak-style": ["error", "windows"],
         "quotes": ["error", "single"],
-        "semi": ["error", "never"]
+        "semi": ["error", "never"],
+        "arrow-parens": ["error", "always"]
     }
 }
