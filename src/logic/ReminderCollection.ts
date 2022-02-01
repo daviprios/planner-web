@@ -1,9 +1,6 @@
-import PlannerCollection, { PlannerCollectionProprieties } from './PlannerCollection'
+import { ReminderCollectionProprieties } from 'types/Reminder'
+import PlannerCollection from './PlannerCollection'
 import ReminderEvent from './ReminderEvent'
-
-interface ReminderCollectionProprieties extends PlannerCollectionProprieties{
-  s: number
-}
 
 class ReminderCollection extends PlannerCollection<ReminderEvent>{
   constructor(

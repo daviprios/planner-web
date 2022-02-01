@@ -1,9 +1,5 @@
-import PlannerEvent, { PlannerEventProprieties } from './PlannerEvent'
-
-interface PlannerCollectionProprieties{
-  name: string,
-  description: string
-}
+import { PlannerCollectionProprieties, PlannerEventProprieties } from 'types/Planner'
+import PlannerEvent from './PlannerEvent'
 
 abstract class PlannerCollection<PlannerCollectionItem extends PlannerEvent<PlannerEventProprieties>>{
   constructor(

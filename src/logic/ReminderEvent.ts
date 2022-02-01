@@ -1,8 +1,5 @@
-import PlannerEvent, { PlannerEventProprieties } from './PlannerEvent'
-
-interface ReminderEventProprieties extends PlannerEventProprieties{
-  alarmTime: Date
-}
+import { ReminderEventProprieties } from 'types/Reminder'
+import PlannerEvent from './PlannerEvent'
 
 class ReminderEvent extends PlannerEvent<ReminderEventProprieties>{
   constructor(proprieties: ReminderEventProprieties){

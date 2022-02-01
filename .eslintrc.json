@@ -26,6 +26,7 @@
         "linebreak-style": ["error", "windows"],
         "quotes": ["error", "single"],
         "semi": ["error", "never"],
-        "arrow-parens": ["error", "always"]
+        "arrow-parens": ["error", "always"],
+        "no-fallthrough": "off"
     }
 }

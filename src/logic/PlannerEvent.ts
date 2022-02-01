@@ -1,9 +1,4 @@
-interface PlannerEventProprieties{
-  name: string,
-  description: string,
-  timeStart: Date,
-  timeEnd?: Date
-}
+import { PlannerEventProprieties } from 'types/Planner'
 
 abstract class PlannerEvent<Proprieties extends PlannerEventProprieties>{
   constructor(
