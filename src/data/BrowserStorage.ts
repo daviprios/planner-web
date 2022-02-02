@@ -113,14 +113,15 @@ class BrowserStorage{
        this.databaseStatus !== 'Connected')
        return false
     
-    await this.connection.add(table, data)
+    const res = await this.connection.add(table, data)
+    console.log(res)
     
     return true
   }
 
   public async read (
     table: BrowserStorageNames,
-    search: IDBKeyRange | BrowserStorageKeyTypes,
+    search: IDBKeyRange | BrowserStorageKeyTypes | undefined,
     searchType: SearchType
   ): Promise<BrowserStorageValueTypes[] | BrowserStorageKeyTypes[] | [BrowserStorageKeyTypes | BrowserStorageValueTypes | undefined]> {
 
@@ -139,10 +140,13 @@ class BrowserStorage{
         readResult = await this.connection.getAllKeys(table, search, searchType.maximum)
       if(searchType.get === 'ALL' || searchType.by === 'VALUE')
         readResult = await this.connection.getAll(table, search, searchType.maximum)
-      if(searchType.get === 'FIRST' || searchType.by === 'KEY')
-        readResult = [await this.connection.getKey(table, search)]
-      if(searchType.get === 'FIRST' || searchType.by === 'VALUE')
-        readResult = [await this.connection.get(table, search)]
+      if(searchType.get === 'FIRST'){
+        if(search === undefined) return []
+        if(searchType.by === 'KEY')
+          readResult = [await this.connection.getKey(table, search)]
+        if(searchType.by === 'VALUE')
+          readResult = [await this.connection.get(table, search)]
+      }
     }
     catch(error){
       console.log(error)
