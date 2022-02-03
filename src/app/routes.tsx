@@ -1,5 +1,6 @@
+import './styles/_global.sass'
 import { HashRouter, Routes as Switch, Route } from 'react-router-dom'
-import LanguageProvider from './provider/LanguageProvider'
+import GlobalProviders from './provider/GlobalProviders'
 
 import Layout from './components/Layout'
 import Calendar from './views/Calendar'
@@ -13,7 +14,7 @@ const routePaths = {
 const Routes = () => {
 	return (
     <HashRouter>
-      <LanguageProvider>
+      <GlobalProviders>
         <Layout>
           <Switch>
             <Route path={routePaths.home}>
@@ -22,7 +23,7 @@ const Routes = () => {
             </Route>
           </Switch>
         </Layout>
-      </LanguageProvider>
+      </GlobalProviders>
     </HashRouter>
   )
 }
