@@ -6,7 +6,12 @@ import { LanguageTemplate } from './languageTemplate'
 type Languages = 'en' | 'pt_br'
 
 const Text: LanguageTemplate = pt_br
+const ChangeAppLanguage = (language: Languages) => {
+  const tagHtml = document.querySelector('html')
+  if(tagHtml) tagHtml.lang = language
+}
 const ChangeLanguage = (language: Languages): LanguageTemplate => {
+  ChangeAppLanguage(language)
   switch(language){
     case 'pt_br':
       return pt_br

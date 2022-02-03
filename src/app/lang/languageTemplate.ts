@@ -1,7 +1,8 @@
 interface LanguageTemplate {
   language: string,
   global: {
-    mainTitle: string
+    mainTitle: string,
+    languageOption: string
   },
   pages: {
     home: {

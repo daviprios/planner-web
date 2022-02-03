@@ -1,60 +1,106 @@
+.layout
+  position: relative
+
+  display: grid
+  grid-template-rows: max-content auto
+  grid-template-areas: 'header' 'content'
+
+  height: 100%
+
+  overflow: hidden
+
 .header
+  grid-area: header
   position: relative
-
-  display: flex
-  align-items: center
-
-  width: 100%
-
-.sideMenuButton
-  padding: 1rem
-
-  background-color: transparent
-  border: none
-
-.themeSwitch
-  justify-self: flex-end
-  position: relative
-  cursor: pointer
 
   display: flex
   justify-content: space-between
-  align-items: center
 
-  height: 1.75rem
-  aspect-ratio: 2/1
+  height: 6rem
+  width: 100%
 
-  padding: 0.25rem 0.25rem
+  padding: 0.25rem 2rem
 
-  background-color: var(--color-neutral-primary)
+  color: var(--color-neutral-primary)
+  background-color: var(--color-primary)
 
-  border-radius: 2rem
-  border: solid 1px gray
+  & > div
+    display: flex
+    align-items: center
 
-  transition: 1s
+.title
+  margin: 0 1.5rem
 
-  .sunIcon,
-  .moonIcon
-    font-size: medium
+.sideMenuButton
+  height: 80%
+  aspect-ratio: 1
 
-  &::after
-    content: ''
-    position: absolute
-    top: 0
-    left: 0
+  color: var(--color-neutral-primary)
+  background-color: transparent
+  font-size: large
 
-    height: 100%
-    aspect-ratio: 1
+  border: none
+  transition: 0.2s
 
-    background-color: white
+  &:hover
+    cursor: pointer
+    background-color: var(--color-low)
+    transition: 0.2s
 
-    border: solid 1px lightgray
-    border-radius: 50%
+  &:active
+    background-color: var(--color-high)
 
-    box-sizing: border-box
+.sideMenu
+  grid-area: content
+  position: fixed
+  top: 0
+  left: 0
 
-    transition-duration: 0.5s
+  height: 100%
+  width: max-content
 
-  &[data-isDay='true']::after
-      transition-duration: 0.5s
-      transform: translateX(110%)
+  padding: 2rem 2rem
+
+  background-color: var(--color-secondary)
+
+  & > button
+    height: 2rem
+    width: 100%
+    margin-bottom: 1rem
+
+    border-radius: 0.5rem
+    border: none
+
+  .navigation
+    li
+      user-select: none
+      border-radius: 0.5rem
+
+      a
+        display: block
+
+        margin: 1rem 0
+        padding: 1rem
+
+        height: 100%
+        width: 100%
+
+        text-decoration: unset
+
+        &:visited
+          color: unset
+
+  & > button,
+  .navigation li
+    color: var(--color-neutral-primary)
+    background-color: var(--color-terciary)
+
+    &:hover
+      cursor: pointer
+      background-color: var(--color-low)
+
+    &:active
+      background-color: var(--color-high)
+
+.content
+  padding: 1rem

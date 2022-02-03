@@ -1,65 +1,73 @@
 import { Link } from 'react-router-dom'
 import { routePaths } from 'app/routes'
-import { ChangeLanguage } from 'app/lang/ManageLanguage'
 import { useContext, useState } from 'react'
+
+import { ChangeLanguage } from 'app/lang/ManageLanguage'
 import { LanguageContext } from 'app/provider/LanguageProvider'
-import styles from './index.module.sass'
 import { ThemeContext } from 'app/provider/ThemeProvider'
+import { TitleContext } from 'app/provider/TitleProvider'
+
+import styles from './index.module.sass'
+import './index.sass'
+import ThemeSwitcher from './ThemeSwitcher'
+import Dropdown from '../Dropdown'
 
 const Layout = (props: {children: JSX.Element | JSX.Element[]}) => {
   const { children } = props
-  const { setLanguage } = useContext(LanguageContext)
-  const { theme, setTheme } = useContext(ThemeContext)
 
-  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false)
-  const [isDay, setIsDay] = useState(false)
+  const { language, setLanguage } = useContext(LanguageContext)
+  const { theme } = useContext(ThemeContext)
+  const { title } = useContext(TitleContext)
+
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
 
   return (
-    <div id='Layout' className={`${theme}`}>
+    <div id='Layout' className={`${theme} ${styles.layout}`}>
       <div className={styles.header}>
-        <button className={styles.sideMenuButton}>
+        <div>
+          <button className={styles.sideMenuButton} onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
+            =
+          </button>
+          <h1 className={styles.title}>
+            { title }
+          </h1>
+        </div>
+        <div>
+          <Dropdown text={language.global.languageOption}>
+            <li>
+              <button onClick={() => setLanguage(ChangeLanguage('en'))}>
+                English
+              </button>
+            </li>
+            <li>
+              <button onClick={() => setLanguage(ChangeLanguage('pt_br'))}>
+                Português brasileiro
+              </button>
+            </li>  
+          </Dropdown>
+          <ThemeSwitcher/>
+        </div>
+      </div>
+      <aside className={styles.sideMenu} style={{ display: isSideMenuOpen ? '' : 'none' }}>
+        <button onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
           =
         </button>
-        <h1>
-          Título
-        </h1>
-        <button className={styles.themeSwitch} data-isDay={isDay} onClick={() => {setIsDay(!isDay);setTheme(isDay ? 'theme-light' : 'theme-dark')}}>
-          <span className={styles.sunIcon}>🌞</span>
-          <span className={styles.moonIcon}>🌛</span>
-        </button>
-        <button onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}>
-          Language
-        </button>
-      </div>
-      <ul style={{ display: isLanguageDropdownOpen ? '' : 'none' }}>
-        <li>
-          <button onClick={() => setLanguage(ChangeLanguage('en'))}>
-            English
-          </button>
-        </li>
-        <li>
-          <button onClick={() => setLanguage(ChangeLanguage('pt_br'))}>
-            Português brasileiro
-          </button>
-        </li>
-      </ul>
-      <aside>
-        <nav>
+        <nav className={styles.navigation}>
           <ul>
             <li>
               <Link to={routePaths.home}>
-                Início
+                {language.pages.home.name}
               </Link>
             </li>
             <li>
               <Link to={routePaths.calendar}>
-                Calendario
+                {language.pages.calendar.name}
               </Link>
             </li>
           </ul>
         </nav>
       </aside>
-      <main>
+      <main className={styles.content}>
         {children}
       </main>
     </div>

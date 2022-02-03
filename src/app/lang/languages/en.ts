@@ -3,7 +3,8 @@ import { LanguageTemplate } from '../languageTemplate'
 const en: LanguageTemplate = {
   language: 'english',
   global: {
-    mainTitle: 'Planner'
+    mainTitle: 'Planner',
+    languageOption: 'Language'
   },
   pages: {
     home: {

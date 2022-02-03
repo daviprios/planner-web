@@ -4,6 +4,7 @@ const pt_br: LanguageTemplate = {
   language: 'português brasileiro',
   global: {
     mainTitle: 'Agenda',
+    languageOption: 'Idioma'
   },
   pages: {
     home: {
