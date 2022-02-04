@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom'
 import { routePaths } from 'app/routes'
-import { useContext, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 
 import { ChangeLanguage } from 'app/lang/ManageLanguage'
 import { LanguageContext } from 'app/provider/LanguageProvider'
 import { ThemeContext } from 'app/provider/ThemeProvider'
 import { TitleContext } from 'app/provider/TitleProvider'
 
-import styles from './index.module.sass'
 import './index.sass'
+import styles from './index.module.sass'
 import ThemeSwitcher from './ThemeSwitcher'
 import Dropdown from '../Dropdown'
+import { useOnClickOutside } from 'usehooks-ts'
 
 const Layout = (props: {children: JSX.Element | JSX.Element[]}) => {
   const { children } = props
@@ -18,8 +19,11 @@ const Layout = (props: {children: JSX.Element | JSX.Element[]}) => {
   const { language, setLanguage } = useContext(LanguageContext)
   const { theme } = useContext(ThemeContext)
   const { title } = useContext(TitleContext)
-
+  
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
+
+  const sideMenuRef = useRef(null)
+  useOnClickOutside(sideMenuRef, () => setIsSideMenuOpen(false))
 
   return (
     <div id='Layout' className={`${theme} ${styles.layout}`}>
@@ -48,7 +52,7 @@ const Layout = (props: {children: JSX.Element | JSX.Element[]}) => {
           <ThemeSwitcher/>
         </div>
       </div>
-      <aside className={styles.sideMenu} style={{ display: isSideMenuOpen ? '' : 'none' }}>
+      <aside className={styles.sideMenu} style={{ display: isSideMenuOpen ? '' : 'none' }} ref={sideMenuRef}>
         <button onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
           =
         </button>

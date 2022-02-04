@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { useOnClickOutside } from 'usehooks-ts'
 import './index.sass'
 
 const Dropdown = (props: {
@@ -9,12 +10,15 @@ const Dropdown = (props: {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
+  const dropdownRef = useRef(null)
+  useOnClickOutside(dropdownRef, () => setIsDropdownOpen(false))
+
   return (
     <div className='dropdownContainer'>
       <button className='dropdownContainerButton' onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
         {text}
       </button>
-      <ul className='dropdownContainerList' style={{ display: isDropdownOpen ? '' : 'none' }}>
+      <ul className='dropdownContainerList' style={{ display: isDropdownOpen ? '' : 'none' }} ref={dropdownRef}>
         {children}
       </ul>
     </div>
