@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { routePaths } from 'app/routes'
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 
 import { ChangeLanguage } from 'app/lang/ManageLanguage'
 import { LanguageContext } from 'app/provider/LanguageProvider'
@@ -25,10 +25,21 @@ const Layout = (props: {children: JSX.Element | JSX.Element[]}) => {
   const sideMenuRef = useRef(null)
   useOnClickOutside(sideMenuRef, () => setIsSideMenuOpen(false))
 
+  const closeSideMenuButtonRef = useRef<HTMLButtonElement>(null)
+  const openSideMenuButtonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if(isSideMenuOpen) closeSideMenuButtonRef.current?.focus()
+  }, [isSideMenuOpen])
+
   return (
     <div id='Layout' className={`${theme} ${styles.layout}`}>
       <aside className={styles.sideMenu} style={{ display: isSideMenuOpen ? '' : 'none' }} ref={sideMenuRef}>
-        <button onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
+        <button
+          aria-label='ASIDE BUTTON'
+          onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}
+          onKeyPress={() => openSideMenuButtonRef.current?.focus()}
+          ref={closeSideMenuButtonRef}>
           =
         </button>
         <nav className={styles.navigation}>
@@ -43,12 +54,15 @@ const Layout = (props: {children: JSX.Element | JSX.Element[]}) => {
                 {language.pages.calendar.name}
               </Link>
             </li>
+            <li style={{ position: 'fixed', left: '100vw' }}><button onFocus={() => closeSideMenuButtonRef.current?.focus()}></button></li>
           </ul>
         </nav>
       </aside>
       <div className={styles.header}>
         <div>
-          <button className={styles.sideMenuButton} onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
+          <button aria-label={language.aria.global.sideMenuButton} className={styles.sideMenuButton}
+            onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}
+            ref={openSideMenuButtonRef}>
             =
           </button>
           <h1 className={styles.title}>
@@ -58,15 +72,15 @@ const Layout = (props: {children: JSX.Element | JSX.Element[]}) => {
         <div>
           <Dropdown text={language.global.languageOption}>
             <li>
-              <button onClick={() => setLanguage(ChangeLanguage('en'))}>
+              <button lang='en' onClick={() => setLanguage(ChangeLanguage('en'))}>
                 English
               </button>
             </li>
             <li>
-              <button onClick={() => setLanguage(ChangeLanguage('pt_br'))}>
+              <button lang='pt_br' onClick={() => setLanguage(ChangeLanguage('pt_br'))}>
                 Português brasileiro
               </button>
-            </li>  
+            </li>
           </Dropdown>
           <ThemeSwitcher/>
         </div>

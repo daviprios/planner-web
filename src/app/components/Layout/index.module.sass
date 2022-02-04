@@ -47,6 +47,9 @@
     background-color: var(--color-low)
     transition: 0.2s
 
+  &:focus
+    background-color: var(--color-low)
+
   &:active
     background-color: var(--color-high)
 
@@ -75,7 +78,6 @@
   .navigation
     li
       user-select: none
-      border-radius: 0.5rem
 
       a
         display: block
@@ -86,18 +88,21 @@
         height: 100%
         width: 100%
 
+        border-radius: 0.5rem
         text-decoration: unset
 
         &:visited
           color: unset
 
-  & > button,
-  .navigation li
+  & > button, .navigation li a
     color: var(--color-neutral-primary)
     background-color: var(--color-terciary)
 
     &:hover
       cursor: pointer
+      background-color: var(--color-low)
+
+    &:focus
       background-color: var(--color-low)
 
     &:active

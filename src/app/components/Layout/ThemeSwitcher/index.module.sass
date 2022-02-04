@@ -1,5 +1,6 @@
 .themeSwitch
-  justify-self: flex-end
+  appearance: none
+
   position: relative
   cursor: pointer
 
@@ -19,8 +20,14 @@
 
   transition: 1s
 
-  .sunIcon,
-  .moonIcon
+  &::before
+    content: '🌞 🌛'
+
+    display: flex
+    justify-content: space-between
+
+    width: 100%
+
     font-size: medium
 
   &::after
@@ -41,6 +48,6 @@
 
     transition-duration: 0.5s
 
-  &[data-isday='true']::after
+  &:checked::after
       transition-duration: 0.5s
       transform: translateX(110%)
