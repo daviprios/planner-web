@@ -14,7 +14,7 @@ interface LanguageTemplate {
     home: {
       name: string
     },
-    calendar: {
+    agenda: {
       name: string
     }
   }

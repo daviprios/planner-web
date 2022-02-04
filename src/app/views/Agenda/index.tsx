@@ -2,19 +2,19 @@ import { useContext, useEffect } from 'react'
 import { LanguageContext } from 'app/provider/LanguageProvider'
 import { TitleContext } from 'app/provider/TitleProvider'
 
-const Calendar = () => {
+const Agenda = () => {
   const { language } = useContext(LanguageContext)
   const { setTitle } = useContext(TitleContext)
 
   useEffect(() => {
-    setTitle(language.pages.calendar.name)
-  }, [language.pages.calendar.name])
+    setTitle(language.pages.agenda.name)
+  }, [language.pages.agenda.name, setTitle])
 
   return (
     <div>
-      {language.pages.calendar.name}
+      {language.pages.agenda.name}
     </div>
   )
 }
 
-export default Calendar
+export default Agenda

@@ -50,8 +50,8 @@ const Layout = (props: {children: JSX.Element | JSX.Element[]}) => {
               </Link>
             </li>
             <li>
-              <Link to={routePaths.calendar}>
-                {language.pages.calendar.name}
+              <Link to={routePaths.agenda}>
+                {language.pages.agenda.name}
               </Link>
             </li>
             <li style={{ position: 'fixed', left: '100vw' }}><button onFocus={() => closeSideMenuButtonRef.current?.focus()}></button></li>

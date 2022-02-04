@@ -16,8 +16,8 @@ const pt_br: LanguageTemplate = {
     home: {
       name: 'Início'
     },
-    calendar: {
-      name: 'Calendário'
+    agenda: {
+      name: 'Agenda'
     }
   }
 }

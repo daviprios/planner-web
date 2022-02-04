@@ -3,12 +3,12 @@ import { HashRouter, Routes as Switch, Route } from 'react-router-dom'
 import GlobalProviders from './provider/GlobalProviders'
 
 import Layout from './components/Layout'
-import Calendar from './views/Calendar'
+import Agenda from './views/Agenda'
 import Planner from './views/Planner'
 
 const routePaths = {
   home: '/',
-  calendar: 'calendar'
+  agenda: 'agenda'
 }
 
 const Routes = () => {
@@ -19,7 +19,7 @@ const Routes = () => {
           <Switch>
             <Route path={routePaths.home}>
               <Route index element={<Planner/>}/>
-              <Route path={routePaths.calendar} element={<Calendar/>}/>
+              <Route path={routePaths.agenda} element={<Agenda/>}/>
             </Route>
           </Switch>
         </Layout>

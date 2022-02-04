@@ -11,7 +11,7 @@ const ThemeSwitcher = (props: { style?: React.HTMLAttributes<HTMLButtonElement> 
 
   useEffect(() => {
     setTheme(isDay ? 'theme-light' : 'theme-dark')
-  }, [isDay])
+  }, [isDay, setTheme])
 
   return (
     <input aria-label={language.aria.global.themeSwitcher} className={styles.themeSwitch} type='checkbox' checked={isDay} onChange={() => setIsDay(!isDay)} style={style}/>

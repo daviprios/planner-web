@@ -2,12 +2,10 @@ import React, { useState, createContext } from 'react'
 import { LanguageTemplate } from 'app/lang/languageTemplate'
 import pt_br from 'app/lang/languages/pt_br'
 
-interface LanguageContext{
+const LanguageContext = createContext<{
   language: LanguageTemplate,
   setLanguage: React.Dispatch<React.SetStateAction<LanguageTemplate>>
-}
-
-const LanguageContext = createContext<LanguageContext>({language: pt_br, setLanguage: () => pt_br})
+}>({language: pt_br, setLanguage: () => pt_br})
 
 const LanguageProvider = (props: {children: JSX.Element | JSX.Element[]}) => {
   const {children} = props

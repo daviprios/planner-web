@@ -8,7 +8,7 @@ const Planner = () => {
 
   useEffect(() => {
     setTitle(language.pages.home.name)
-  }, [language.pages.home.name])
+  }, [language.pages.home.name, setTitle])
 
   return (
     <div>

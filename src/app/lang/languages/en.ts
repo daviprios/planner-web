@@ -16,8 +16,8 @@ const en: LanguageTemplate = {
     home: {
       name: 'Home'
     },
-    calendar: {
-      name: 'Calendar'
+    agenda: {
+      name: 'Agenda'
     }
   }
 }
