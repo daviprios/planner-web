@@ -27,6 +27,25 @@ const Layout = (props: {children: JSX.Element | JSX.Element[]}) => {
 
   return (
     <div id='Layout' className={`${theme} ${styles.layout}`}>
+      <aside className={styles.sideMenu} style={{ display: isSideMenuOpen ? '' : 'none' }} ref={sideMenuRef}>
+        <button onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
+          =
+        </button>
+        <nav className={styles.navigation}>
+          <ul>
+            <li>
+              <Link to={routePaths.home}>
+                {language.pages.home.name}
+              </Link>
+            </li>
+            <li>
+              <Link to={routePaths.calendar}>
+                {language.pages.calendar.name}
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </aside>
       <div className={styles.header}>
         <div>
           <button className={styles.sideMenuButton} onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
@@ -52,25 +71,6 @@ const Layout = (props: {children: JSX.Element | JSX.Element[]}) => {
           <ThemeSwitcher/>
         </div>
       </div>
-      <aside className={styles.sideMenu} style={{ display: isSideMenuOpen ? '' : 'none' }} ref={sideMenuRef}>
-        <button onClick={() => setIsSideMenuOpen(!isSideMenuOpen)}>
-          =
-        </button>
-        <nav className={styles.navigation}>
-          <ul>
-            <li>
-              <Link to={routePaths.home}>
-                {language.pages.home.name}
-              </Link>
-            </li>
-            <li>
-              <Link to={routePaths.calendar}>
-                {language.pages.calendar.name}
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </aside>
       <main className={styles.content}>
         {children}
       </main>
